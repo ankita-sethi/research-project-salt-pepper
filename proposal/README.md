@@ -20,20 +20,11 @@ With this project we aim to
 
 # Approach
 1. To investigate how many populuar open source code bases use static security analyzers. Also to understand distribution of different security analyzers across these codebases, aiming to determine how commonly they are employed.
-2. If they don't use any, we can try running some analyzer on them?
-    - Why are they not running?
-    - Can we get any bugs by running? Check all warnings?
-    - This probably has some papers?
-        - [A Large-Scale Security-Oriented Static Analysis of Python Packages in PyPI](https://ieeexplore.ieee.org/abstract/document/9647791)
-1. Study how frequent are these exceptions among popular codebases.
-    - Are there comments explaining why it was done.
-    - Create a database of such patterns
-2. Run all the `nosec` lines through _some model_ and see if it can give some summary on the patterns used.
-    - Speed up the analysis process.
-2. Identify if there were any vulnerabilities hidden due to these exceptions.
-3. Take top n excecption patterns and study if there are safe alternatives, and if so, why are developers not using them. If not, what can the language do to improve them.
-4. How can we improve these analyzers? What is state of the art?
-7. Finding if there was `nosec` in the past commit and if later removed, why was it removed? Does the git commit or any comments say what happend?
+2. Identify codebases that do not employ security analyzers and ascertain the reasons behind this decision. Proceed to execute security analyzer scans on these codebases to identify potential vulnerabilities or warnings. Conduct a comprehensive literature review to explore previous studies conducted in this domain like [A Large-Scale Security-Oriented Static Analysis of Python Packages in PyPI](https://ieeexplore.ieee.org/abstract/document/9647791)
+3. Conduct a comprehensive investigation on a large scale to identify code lines within popular codebases that have been designated to bypass testing against security vulnerabilities. This research aims to determine the frequency of such occurrences. Generate a dataset that catalogs these exceptions for further analysis and reference.
+4. Examine all lines labeled as `#nosec` or `--skip` to investigate the possibility of categorizing them into distinct clusters while providing accompanying justifications.
+5. Identify if there were any vulnerabilities hidden due to these exceptions.Analyze the most prevalent N exception patterns and explore secure alternatives for these, nvestigate the reasons behind developers not adopting these alternatives. if such alternatives do not exist, consider potential enhancements that can be made to the programming language?
+8. Identify the presence of the `#nosec` label in previous commits and summarize the reasons behind its removal, if applicable. Examine Git commits and associated comments for insights into the circumstances surrounding its removal.
 
 # Scope and Evaluation Plan
 We will be focusing of the following 3 studies under the scope for the project and will also define a set of extended scope based on the availability of time.
