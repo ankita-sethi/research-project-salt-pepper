@@ -36,7 +36,7 @@ With this project we aim to
 3. Conduct a comprehensive investigation on a large scale to identify code lines within popular codebases that have been designated to bypass testing against security vulnerabilities. This research aims to determine the frequency of such occurrences. Generate a dataset that catalogs these exceptions for further analysis and reference.
 4. Examine all lines labeled as `#nosec` or `--skip` to investigate the possibility of categorizing them into distinct clusters while providing accompanying justifications.
 5. Identify if there were any vulnerabilities hidden due to these exceptions.Analyze the most prevalent N exception patterns and explore secure alternatives for these, nvestigate the reasons behind developers not adopting these alternatives. if such alternatives do not exist, consider potential enhancements that can be made to the programming language?
-8. Identify the presence of the `#nosec` label in previous commits and summarize the reasons behind its removal, if applicable. Examine Git commits and associated comments for insights into the circumstances surrounding its removal.
+6. Identify the presence of the `#nosec` label in previous commits and summarize the reasons behind its removal, if applicable. Examine Git commits and associated comments for insights into the circumstances surrounding its removal.
 
 # Scope and Evaluation Plan
 We will be focusing of the following 3 studies under the scope for the project and will also define a set of extended scope based on the availability of time.
