@@ -1,4 +1,4 @@
-# Title: nosec is novuln? Analyzing the Bandit exceptions in Python codebases to discover vulnerable patterns
+# nosec is novuln? Analyzing the Bandit exceptions in Python codebases to discover vulnerable patterns
 
 # Problem
 All the popular programming languages has security analyzers that help developers identify vulnerable programming patterns. These are generally run as a part of CI to make sure vulnerable code does not go into productions. These analysis techniques are based mostly on heuristics and thus have false positives, and hence add configurations to skip some errors if developers find a rule to be such. This also comes at the cost of developers exploiting the configurations to _just pass the CI_, by adding exceptions. For example, Python's Bandit analyzer suggests adding exception when _"the line has been reviewed and the issue is a false positive or acceptable for some other reason"_.
