@@ -10,13 +10,25 @@ With this project we aim to
 
 # Context
 - What is static security analysis?
-- Why static analysis is hard / uses heuristics?
-- Python
-    - Small context on how popular Python is, how it's packaging makes it easier to consume.
-    - What bandit does? How is it incorporated?
-    - Why is it popular? How popular is it(a metric)?
-    - How bandit plugins work? One example for valid false positive? One example where we should not add exception.
-    - Exceptions: CLI and inline comments
+   Static security analysis is a technique for assessing and locating security flaws in software without actually running the program.It inspects an application's source code for potential design flaws, security holes, and coding errors that could result in security breaches.
+
+- Why static analysis is complicated / uses heuristics?
+    Due to features like complex code, dynamic behaviour, insufficient information, and implicit behaviours, statistics analysis is complicated and frequently uses heuristics to help in identifying potential problems. Because of these difficulties, static analysis frequently employs heuristics and may result in false positives or false negatives.
+
+- Bandit is often used in security testing workflows for Python applications
+    Python's popularity can be attributed to its readability and simplicity, which makes it usable by both inexperienced and seasoned developers. Tools like pip and PyPI power the Python packaging system. It makes Python simple to install and integrate tools like Bandit into Python projects using the Python package manager, pip. PyPI serves as a centralised repository for Python packages created by the community, making a huge selection of resources accessible. Bandit looks for widespread security flaws and coding techniques that might provide a security risk. 
+
+    The popularity of Bandit is due to its Python-specific focus, which makes it possible to identify coding problems and security flaws efficiently. Bandit is widely used and well-liked in security testing thanks to its user-friendly interface, simple integration into Python processes, and support from the Python community. It's interesting to note that the PyPI package bandit has been starred 5,467 times, according to project statistics from the GitHub repository.
+
+    Bandit plugins allow users to extend the capabilities of Bandit by defining custom checks for specific security concerns. These plugins are Python scripts that implement additional checks beyond those provided by default. If a developer has initialised a password variable Bandit's default check B101 flags the use of a hard-coded password, but a developer has added a comment to disable this specific check. If the password is actually securely managed elsewhere, this would be considered a valid false positive. Adding exceptions indiscriminately to critical security checks can potentially lead to overlooking genuine security vulnerabilities.
+
+    Inline comments can be used to disable specific checks for a particular piece of code. For example:
+    pwd = "ABCDE"  # bandit:disable [B101] 
+    You use the command line to execute Bandit with various options and arguments to perform security analysis on your Python code. 
+    [B101]
+    exclude = path/ABCDE/File/PythonFile.py
+    This can be used when a developer knows that a particular piece of code is secure and should not trigger a warning.
+
 
 # Approach
 1. To investigate how many populuar open source code bases use static security analyzers. Also to understand distribution of different security analyzers across these codebases, aiming to determine how commonly they are employed.
