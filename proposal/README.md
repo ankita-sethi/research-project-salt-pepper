@@ -9,22 +9,16 @@ With this project we aim to
 3. Propose improvements to the design and usage of analyzer to avoid such pitfalls.
 
 # Context
-- **Static security analysis** is a technique for assessing and locating security flaws in software without actually running the program. It inspects an application's source code for potential design flaws, security holes, and coding errors that could result in security breaches.
+**Static security analysis** is a technique for identifying software security flaws without executing the program. It examines the source code for design flaws, security vulnerabilities, and coding errors that might lead to security breaches. This approach relies on heuristics due to complex code, dynamic behavior, and limited information, making statistical analysis challenging. Consequently, it may generate false positives or false negatives. 
+**Bandit** is often used in security testing workflows for Python applications. Python's appeal lies in its readability and simplicity, catering to developers of all levels. Tools like pip and PyPI simplify Python packaging, easing the installation and integration of tools like Bandit. PyPI serves as a central hub for Python packages, providing a wealth of resources. Bandit's Python-centric approach efficiently identifies coding issues and security flaws, making it popular in security testing due to its user-friendly interface, seamless Python integration, and strong Python community support. Remarkably, the PyPI package "bandit" has received 5,467 stars on GitHub, reflecting its widespread adoption.
+Bandit's flexibility comes through plugins, enabling users to create custom security checks. For example, developers can disable Bandit's default check B101, which detects hard-coded passwords, by adding comments. However, this may lead to valid false positives if passwords are securely managed elsewhere. Overusing exceptions in critical security checks may result in overlooking real security vulnerabilities.
 
-- Static analysis is complicated / uses heuristics because of features like complex code, dynamic behaviour, insufficient information, and implicit behaviours, statistics analysis is complicated and frequently uses heuristics to help in identifying potential problems. Because of these difficulties, static analysis frequently employs heuristics and may result in false positives or false negatives.
-
-- Bandit is often used in security testing workflows for Python applications
-
-    Python's popularity stems from its readability and simplicity, appealing to both novice and experienced developers. Tools like pip and PyPI streamline Python packaging, simplifying the installation and integration of tools like Bandit. PyPI acts as a central repository for community-created Python packages, offering a vast resource pool. Bandit, with its Python-centric focus, efficiently identifies coding issues and security flaws, earning its popularity in security testing due to its user-friendly interface, easy Python integration, and Python community support. Notably, the PyPI package "bandit" has be starred 5,467 times, according to project statistics from the GitHub repository.
-
-    Bandit plugins allow users to extend the capabilities of Bandit by defining custom checks for specific security concerns. For instance, while Bandit's default check B101 detects hard-coded passwords, developers can add comments to disable this specific check, potentially creating valid false positives if passwords are securely managed elsewhere. Overusing exceptions in critical security checks may lead to overlooking genuine security vulnerabilities.
-
-    Inline comments can be used to disable specific checks for a particular piece of code. For example:
-    pwd = "ABCDE"  # bandit:disable [B101] 
-    You use the command line to execute Bandit with various options and arguments to perform security analysis on your Python code. 
-    [B101]
-    exclude = path/ABCDE/File/PythonFile.py
-    This can be used when a developer knows that a particular piece of code is secure and should not trigger a warning.
+Inline comments can be used to disable specific checks for a particular piece of code. For example:
+pwd = "ABCDE"  # bandit:disable [B101] 
+You use the command line to execute Bandit with various options and arguments to perform security analysis on your Python code. 
+[B101]
+exclude = path/ABCDE/File/PythonFile.py
+This can be used when a developer knows that a particular piece of code is secure and should not trigger a warning.
 
 # Approach
 1. To investigate how many popular open source code bases use static security analyzers. Also, to understand distribution of different security analyzers across these codebases, aiming to determine how commonly they are employed.
