@@ -19,8 +19,7 @@ With this project we aim to
     - Exceptions: CLI and inline comments
 
 # Approach
-1. How much of the popular open source code bases use security analyzers.
-    - Distribution
+1. To investigate how many populuar open source code bases use static security analyzers. Also to understand distribution of different security analyzers across these codebases, aiming to determine how commonly they are employed.
 2. If they don't use any, we can try running some analyzer on them?
     - Why are they not running?
     - Can we get any bugs by running? Check all warnings?
