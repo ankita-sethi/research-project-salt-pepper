@@ -56,7 +56,7 @@ Here we see, the nosec is not used cautiously which suggests developer ignorance
 ### Only 7.34% of the `nosec` exception has the category mentioned in it
 This also suggests usage of exceptions is not carefully added
 
-## Next Steps
+# Next Steps
 1. Manually analyze the `nosec` usages which are common across packages.
 2. Automate the procecss of vulnarability discovery based on previous step
 3. Analyze issues to achive exploitation and report to the package owners.
