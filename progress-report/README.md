@@ -35,23 +35,23 @@ This work helps in narrowing the focus for our further analysis in identifying v
 ## Understanding bandit plugins
 [This](bandit_plugins.md) document summarizes available plugins and its properties. This work acts as a reference in our future analysis, to validate the usage of exceptions as well as identifying bad coding practices.
 
-## Understanding the consumption on bandit in a sample repo
-We'll be analysing consumption on bandit in two sample repos which have high amounts of nosec instances, namely 'couchbase-python-client' and 'checkov' as seen from the graph.
+## Understanding the consumption of bandit in a sample repo
+We'll be analyzing consumption on bandit in two sample repos that have high amounts of nosec instances, namely 'couchbase-python-client' and 'checkov' as seen from the graph.
 
 Here are some deductions that can be made from the # nosec logs:
-1. There are several instances where external commands are executed using subprocess.Popen or subprocess.run. Examples include Git commands, Helm commands, Kustomize commands, etc.
+1. There are several instances where external commands are executed using subprocesses.Popen or subprocess.run. Examples include Git commands, Helm commands, Kustomize commands, etc.
 2. There are cases where generic exceptions are caught using except Exception: and # nosec is used to suppress warnings related to this.
 3. There are instances where user inputs are taken using input() without validation, which can potentially lead to security vulnerabilities.
 4. Regular expressions are used with patterns that might be related to sensitive information such as API keys, passwords, etc. The use of # nosec may indicate that the developers have reviewed these patterns and determined that they are safe in their specific use case.
 
 The top three types of # nosec usage based on the logs are:
-1. Subprocess Calls: Many occurrences of # nosec are related to subprocess calls, where external commands are executed. Developers might be using # nosec to indicate that they have reviewed and approved the subprocess calls. Alternative approach to this could have been Input Validation, Whitelist Commands wherein the developers could have defined a whitelist of allowed commands that can be executed via subprocess, instead of allowing arbitrary commands, or using full paths to executable binaries.
+1. Subprocess Calls: Many occurrences of # nosec are related to subprocess calls, where external commands are executed. Developers might be using # nosec to indicate that they have reviewed and approved the subprocess calls. An alternative approach to this could have been Input Validation, Whitelist Commands wherein the developers could have defined a whitelist of allowed commands that can be executed via subprocess, instead of allowing arbitrary commands or using full paths to executable binaries.
 Eg. subprocess.check_call(cmake_config_args,  # nosec
 
-2. Exception Handling: Some # nosec comments are associated with exception handling blocks. This suggests that the code author is aware of potential exceptions but has chosen to suppress related security warnings.Instead of using a broad except Exception block, catch specific exception types could be raised. Proper logging can help identify and address issues while maintaining security. Another method to tackle #nosecs in Exception Handling is implementing graceful degradation when handling exceptions.
+2. Exception Handling: Some # nosec comments are associated with exception handling blocks. This suggests that the code author is aware of potential exceptions but has chosen to suppress related security warnings. Instead of using a broad Exception block, catch-specific exception types could be raised. Proper logging can help identify and address issues while maintaining security. Another method to tackle #nosecs in Exception Handling is implementing graceful degradation when handling exceptions.
 Eg. except Exception:  # nosec
 
-3. YAML Loading: In a couple of instances, # nosec is used with YAML loading. This could indicate that the developer is aware of potential security risks related to loading YAML content but has chosen to suppress warnings for specific cases.Prefer using safe YAML loaders that only parse basic YAML constructs without executing arbitrary code. In Python, you can use yaml.safe_load instead of yaml.load. Only load YAML from trusted sources, and avoid loading user-generated YAML without proper validation.
+3. YAML Loading: In a couple of instances, # nosec is used with YAML loading. This could indicate that the developer is aware of potential security risks related to loading YAML content but has chosen to suppress warnings for specific cases. Prefer using safe YAML loaders that only parse basic YAML constructs without executing arbitrary code. In Python, you can use yaml.safe_load instead of yaml.load. Only load YAML from trusted sources, and avoid loading user-generated YAML without proper validation.
 Eg. data = yaml.load(yaml_str)  # nosec (example, not found in logs)
 
 
